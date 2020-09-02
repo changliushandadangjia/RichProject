@@ -11,7 +11,7 @@ namespace RichProjectService
         ///     应用模块初始化
         /// </summary>
         public override void Initialize()
-        {
+        { 
             IocManager.RegisterAssemblyByConvention(typeof(ServiceModule).GetAssembly());
         }
     }
