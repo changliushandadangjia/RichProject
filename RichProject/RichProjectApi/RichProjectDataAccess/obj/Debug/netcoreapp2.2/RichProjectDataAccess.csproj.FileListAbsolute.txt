@@ -1,0 +1,12 @@
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\bin\Debug\netcoreapp2.2\RichProjectDataAccess.deps.json
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\bin\Debug\netcoreapp2.2\RichProjectDataAccess.dll
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\bin\Debug\netcoreapp2.2\RichProjectDataAccess.pdb
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\bin\Debug\netcoreapp2.2\RichProjectDomain.dll
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\bin\Debug\netcoreapp2.2\RichProjectDomain.pdb
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\obj\Debug\netcoreapp2.2\RichProjectDataAccess.csprojAssemblyReference.cache
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\obj\Debug\netcoreapp2.2\RichProjectDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\obj\Debug\netcoreapp2.2\RichProjectDataAccess.AssemblyInfoInputs.cache
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\obj\Debug\netcoreapp2.2\RichProjectDataAccess.AssemblyInfo.cs
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\obj\Debug\netcoreapp2.2\RichProjectDataAccess.csproj.CopyComplete
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\obj\Debug\netcoreapp2.2\RichProjectDataAccess.dll
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDataAccess\obj\Debug\netcoreapp2.2\RichProjectDataAccess.pdb

@@ -1,0 +1,8 @@
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\bin\Debug\netcoreapp2.2\RichProjectDomain.deps.json
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\bin\Debug\netcoreapp2.2\RichProjectDomain.dll
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\bin\Debug\netcoreapp2.2\RichProjectDomain.pdb
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\obj\Debug\netcoreapp2.2\RichProjectDomain.csproj.CoreCompileInputs.cache
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\obj\Debug\netcoreapp2.2\RichProjectDomain.AssemblyInfoInputs.cache
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\obj\Debug\netcoreapp2.2\RichProjectDomain.AssemblyInfo.cs
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\obj\Debug\netcoreapp2.2\RichProjectDomain.dll
+C:\Users\29933\Desktop\RichProject\RichProjectApi\RichProjectDomain\obj\Debug\netcoreapp2.2\RichProjectDomain.pdb
