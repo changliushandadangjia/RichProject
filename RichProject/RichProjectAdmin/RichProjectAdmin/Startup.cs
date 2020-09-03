@@ -35,6 +35,7 @@ namespace RichProjectAdmin
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddHttpClient();
             return services.AddAbp<RichProjectAdminModule>();
         }
 

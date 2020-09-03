@@ -18,11 +18,19 @@ namespace RichProjectApi.Controllers
         {
             _wealthDetailService = wealthDetailService;
         }
+
+        [DontWrapResult]
+        [HttpGet("GetWealthDetail/ById")]
+        public ActionResult<WealthDetail> GetWealthDetailById(int id)
+        {
+            return _wealthDetailService.GetWealthDetailById(id);
+        }
+
         [DontWrapResult]
         [HttpGet("GetWealthDetail")]
-        public ActionResult<WealthDetail> GetWealthDetail(int id)
+        public ActionResult<List<WealthDetail>> GetWealthDetail()
         {
-            return _wealthDetailService.GetWealthDetail(id);
+            return _wealthDetailService.GetWealthDetail();
         }
     }
 }

@@ -19,12 +19,22 @@ namespace RichProjectDataAccess.Query
         }
 
         /// <summary>
+        /// 根据Id获取财富详情
+        /// </summary>
+        /// <returns></returns>
+        public WealthDetail GetWealthDetailById(int id)
+        {
+            var wealthDetail=_dataContext.WealthDetail.FirstOrDefault(p => p.Id == id);
+            return wealthDetail;
+        }
+
+        /// <summary>
         /// 获取财富详情
         /// </summary>
         /// <returns></returns>
-        public WealthDetail GetWealthDetail(int id)
+        public List<WealthDetail> GetWealthDetail()
         {
-            var wealthDetail=_dataContext.WealthDetail.FirstOrDefault(p => p.Id == id);
+            var wealthDetail = _dataContext.WealthDetail.ToList();
             return wealthDetail;
         }
     }

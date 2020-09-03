@@ -8,9 +8,15 @@ namespace RichProjectDomain.Interface
     public interface IWealthDetailService
     {
         /// <summary>
-        /// 获得财富详情
+        /// 根据Id获得财富详情
         /// </summary>
         /// <returns></returns>
-        WealthDetail GetWealthDetail(int id);
+        WealthDetail GetWealthDetailById(int id);
+
+        /// <summary>
+        /// 获取财富详情
+        /// </summary>
+        /// <returns></returns>
+        List<WealthDetail> GetWealthDetail();
     }
 }

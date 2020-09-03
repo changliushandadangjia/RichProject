@@ -17,12 +17,21 @@ namespace RichProjectService.Service
         }
 
         /// <summary>
-        /// 获得财富详情
+        /// 根据Id获得财富详情
         /// </summary>
         /// <returns></returns>
-        public WealthDetail GetWealthDetail(int id)
+        public WealthDetail GetWealthDetailById(int id)
         {
-            return _wealthDetailQuery.GetWealthDetail(id);
+            return _wealthDetailQuery.GetWealthDetailById(id);
+        }
+
+        /// <summary>
+        /// 获取财富详情
+        /// </summary>
+        /// <returns></returns>
+        public List<WealthDetail> GetWealthDetail()
+        {
+            return _wealthDetailQuery.GetWealthDetail();
         }
     }
 }

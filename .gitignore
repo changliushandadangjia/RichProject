@@ -80,3 +80,4 @@ ModelManifest.xml
 v15/
 #.gitignore
 /RichProject/RichProjectAdmin/.vs/config
+/RichProject/RichProjectAdmin/.vs/RichProjectAdmin/DesignTimeBuild
