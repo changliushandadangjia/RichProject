@@ -37,18 +37,24 @@ layui.use('table', function () {
 
     table.render({
         elem: '#test'
-        , url: '/demo/table/user/'
+        , url: Url.GetStoreUrl
         , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-        , cols: [[
+        , cols: [[  
             { field: 'id', width: 80, title: 'ID', sort: true }
-            , { field: 'username', width: 80, title: '用户名' }
-            , { field: 'sex', width: 80, title: '性别', sort: true }
-            , { field: 'city', width: 80, title: '城市' }
-            , { field: 'sign', title: '签名', width: '30%', minWidth: 100 } //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-            , { field: 'experience', title: '积分', sort: true }
-            , { field: 'score', title: '评分', sort: true }
-            , { field: 'classify', title: '职业' }
-            , { field: 'wealth', width: 137, title: '财富', sort: true }
+            , { field: 'wealthArea', width: 80, title: '存钱的地方' }
+            , { field: 'amount', width: 80, title: '金额', sort: true }
+            , { field: 'remark', width: 80, title: '备注' }
+            , { field: 'isDeleted', title: '是否删除', width: '30%', minWidth: 100 } //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+            , { field: 'creationTime', title: '创建时间', sort: true }
+            , { field: 'lastModifycationTime', title: '更新时间'}
         ]]
+        , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+            return {
+                "code": res.result.code, //解析接口状态
+                "msg": res.result.msg, //解析提示文本
+                "count": res.result.count, //解析数据长度
+                "data": res.result.data //解析数据列表
+            };
+        }
     });
 });
