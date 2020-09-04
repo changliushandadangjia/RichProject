@@ -13,7 +13,7 @@ namespace RichProjectAdmin.Application
         /// </summary>
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(AbpModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(ApplicationModule).GetAssembly());
         }
     }
 }
