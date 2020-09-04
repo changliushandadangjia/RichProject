@@ -3,6 +3,29 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">财富饼图</div>
+                    <div class="layui-card-body">
+                        <div id="wealthCircle" style="width: 600px; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
 
-<h1>Index</h1>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">财富饼图</div>
+                    <div class="layui-card-body">
+                        <div id="wealthLine" style="width: 600px; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div>
+            <table class="layui-hide" id="test"></table>
+        </div>
+    </div>
+<script src="~/js/WealthDetail/Index.js"></script>
