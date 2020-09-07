@@ -37,5 +37,19 @@ namespace RichProjectDataAccess.Query
             var wealthDetail = _dataContext.WealthDetail.ToList();
             return wealthDetail;
         }
+
+        /// <summary>
+        /// 获取六个月内每月财富总额
+        /// </summary>
+        /// <returns></returns>
+        public List<MonthAmountSummary> GetMonthAmountSummary()
+        {
+            DateTime startTime = Convert.ToDateTime(DateTime.Now.AddMonths(-6).ToString("yyyy-MM"));
+            DateTime endTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM"));
+            var summary = _dataContext.MonthAmountSummary.Where(p =>
+                    Convert.ToDateTime(p.TimeFlag) <= endTime && Convert.ToDateTime(p.TimeFlag) >= startTime)
+                .Select(p => p).ToList();
+            return summary;
+        }
     }
 }

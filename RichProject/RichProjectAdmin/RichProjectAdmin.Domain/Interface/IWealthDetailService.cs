@@ -13,5 +13,11 @@ namespace RichProjectAdmin.Domain.Interface
         /// </summary>
         /// <returns></returns>
         Task<List<WealthDetail>> GetWealthDetail();
+
+        /// <summary>
+        /// 获取六个月每月财富总和
+        /// </summary>
+        /// <returns></returns>
+        Task<List<DetailAmountSummary>> GetMonthAmountSummary();
     }
 }

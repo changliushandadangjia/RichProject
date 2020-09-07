@@ -18,5 +18,11 @@ namespace RichProjectDomain.Interface.Query
         /// </summary>
         /// <returns></returns>
         List<WealthDetail> GetWealthDetail();
+
+        /// <summary>
+        /// 获取六个月内每月财富总额
+        /// </summary>
+        /// <returns></returns>
+        List<MonthAmountSummary> GetMonthAmountSummary();
     }
 }

@@ -32,5 +32,12 @@ namespace RichProjectApi.Controllers
         {
             return _wealthDetailService.GetWealthDetail();
         }
+
+        [DontWrapResult]
+        [HttpGet("GetMonthAmountSummary")]
+        public ActionResult<List<MonthAmountSummary>> GetMonthAmountSummary()
+        {
+            return _wealthDetailService.GetMonthAmountSummary();
+        }
     }
 }

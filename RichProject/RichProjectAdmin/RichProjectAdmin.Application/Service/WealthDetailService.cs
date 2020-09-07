@@ -35,6 +35,19 @@ namespace RichProjectAdmin.Application.Service
             //HttpContent content = new FormUrlEncodedContent(dicParam);
             //return await RemoteHelper(url, content);
         }
+
+        /// <summary>
+        /// 获取六个月每月财富总和
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<DetailAmountSummary>> GetMonthAmountSummary()
+        {
+            string url = "https://localhost:44399/GetMonthAmountSummary";
+            var str = await RemoteHelper(url, null);
+            var result = JsonConvert.DeserializeObject<List<DetailAmountSummary>>(str);
+            return result;
+        }
+
         private async Task<string> RemoteHelper(string url, HttpContent content)
         {
             var result = string.Empty;

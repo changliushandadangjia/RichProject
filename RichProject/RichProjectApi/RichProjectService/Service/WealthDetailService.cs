@@ -33,5 +33,14 @@ namespace RichProjectService.Service
         {
             return _wealthDetailQuery.GetWealthDetail();
         }
+
+        /// <summary>
+        /// 获取六个月内每月财富总额
+        /// </summary>
+        /// <returns></returns>
+        public List<MonthAmountSummary> GetMonthAmountSummary()
+        {
+            return _wealthDetailQuery.GetMonthAmountSummary();
+        }
     }
 }
