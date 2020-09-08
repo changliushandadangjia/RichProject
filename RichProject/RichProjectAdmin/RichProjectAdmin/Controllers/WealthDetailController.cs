@@ -21,7 +21,11 @@ namespace RichProjectAdmin.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //var detail = await _wealthDetailService.GetWealthDetail();
+            return View();
+        }
+
+        public async Task<IActionResult> DetailPage()
+        {
             return View();
         }
 
