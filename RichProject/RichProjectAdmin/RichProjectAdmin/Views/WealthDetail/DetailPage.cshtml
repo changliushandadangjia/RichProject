@@ -3,27 +3,17 @@
     ViewData["Title"] = "DetailPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<table class="layui-table" lay-data="{width: 892, height:330, url:'@Url.Action("GetWealthDetail","WealthDetail")', page:true, id:'idTest',request:{},response:{statusName: 'status',statusCode: 0,msgName: 'hint',countName: 'total',dataName: 'rows'}}" lay-filter="demo">
-    <thead>
-        <tr>
-            <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-            <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-            <th lay-data="{field:'wealthArea', width:80}">存钱的地方</th>
-            <th lay-data="{field:'amount', width:80, sort: true}">金额</th>
-            <th lay-data="{field:'remark', width:80}">备注</th>
-            <th lay-data="{field:'isDeleted', width:160}">是否删除</th>
-            <th lay-data="{field:'creationTime', width:80, sort: true}">创建时间</th>
-            <th lay-data="{field:'lastModifycationTime', width:80}">更新时间</th>
-            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-        </tr>
-    </thead>
-</table>
-
+<table class="layui-hide" id="demo" lay-filter="test"></table>
+ 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
-<script src="~/js/layui.all.js"></script>
+
+<script>
+    var Url = {
+        GetWealthDetail: '@Url.Action("GetWealthDetail", "WealthDetail")'
+    }
+</script>
 <script src="~/js/WealthDetail/DetailPage.js"></script>

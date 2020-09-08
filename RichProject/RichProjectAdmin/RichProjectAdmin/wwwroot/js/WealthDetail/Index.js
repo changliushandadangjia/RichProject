@@ -77,10 +77,10 @@ layui.use('table', function () {
         ]]
         , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
             return {
-                "code": res.result.code, //解析接口状态
-                "msg": res.result.msg, //解析提示文本
-                "count": res.result.count, //解析数据长度
-                "data": res.result.data //解析数据列表
+                "code": res.code, //解析接口状态
+                "msg": res.msg, //解析提示文本
+                "count": res.count, //解析数据长度
+                "data": res.data //解析数据列表
             };
         }
     });
