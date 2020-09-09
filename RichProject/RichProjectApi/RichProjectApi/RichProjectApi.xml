@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RichProjectApi</name>
+    </assembly>
+    <members>
+        <member name="M:RichProjectApi.Controllers.WealthDetailController.GetWealthDetailById(System.Int32)">
+            <summary>
+            根据Id查询财富详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.WealthDetailController.AddWealthDetail(RichProjectDomain.Model.DatabaseDto.WealthDetail)">
+            <summary>
+            新增详情
+            </summary>
+            <param name="input">财富实体</param>
+            <returns></returns>
+        </member>
+        <member name="T:RichProjectApi.Infrastructure.WebApiExceptionFilterAttribute">
+            <summary>
+            api请求异常日志类
+            </summary>
+        </member>
+        <member name="M:RichProjectApi.Infrastructure.WebApiExceptionFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            控制器中的操作执行之前调用此方法
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:RichProjectApi.Infrastructure.WebApiExceptionFilterAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            控制器中的操作执行之后调用此方法
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:RichProjectApi.Infrastructure.WebApiExceptionFilterAttribute.OnExceptionAsync(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            控制器中的操作异常调用此方法
+            </summary>
+            <param name="actionExecutedContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Infrastructure.WebApiExceptionFilterAttribute.WriteErrorAsync(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            写异常日志
+            </summary>
+            <param name="exceptionContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.InterfaceModule.Initialize">
+            <summary>
+                应用模块初始化
+            </summary>
+        </member>
+    </members>
+</doc>

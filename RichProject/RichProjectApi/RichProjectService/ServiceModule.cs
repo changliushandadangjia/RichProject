@@ -1,10 +1,11 @@
-﻿using Abp.Modules;
+﻿using Abp.AutoMapper;
+using Abp.Modules;
 using Abp.Reflection.Extensions;
 using RichProjectDataAccess;
 
 namespace RichProjectService
 {
-    [DependsOn(typeof(DataAccessModule))]
+    [DependsOn(typeof(AbpAutoMapperModule),typeof(DataAccessModule))]
     public class ServiceModule:AbpModule
     {
         /// <summary>

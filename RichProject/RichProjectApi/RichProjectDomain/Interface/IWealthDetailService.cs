@@ -24,5 +24,26 @@ namespace RichProjectDomain.Interface
         /// </summary>
         /// <returns></returns>
         List<MonthAmountSummary> GetMonthAmountSummary();
+
+        /// <summary>
+        /// 根据Id更新财富详情
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        bool UpdateWealthDetailById(WealthDetail input);
+
+        /// <summary>
+        /// 根据Id删除财富详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool DeleteWealthDetailById(int id);
+
+        /// <summary>
+        /// 根据Id删除财富详情
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        bool AddWealthDetail(WealthDetail input);
     }
 }

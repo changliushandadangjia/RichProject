@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Abp.AspNetCore;
 using Abp.Castle.Logging.Log4Net;
@@ -17,6 +19,7 @@ using Microsoft.Extensions.Options;
 using RichProjectDataAccess;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using RichProjectApi.Infrastructure;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace RichProjectApi
 {
@@ -37,6 +40,11 @@ namespace RichProjectApi
             {
                 // 添加文档信息
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "RichProjectApi", Version = "v1" });
+                // 使用反射获取xml文件。并构造出文件的路径
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                // 启用xml注释. 该方法第二个参数启用控制器的注释，默认为false.
+                c.IncludeXmlComments(xmlPath, true);
             });
             services.AddMvc(option =>
             {
@@ -69,6 +77,8 @@ namespace RichProjectApi
             // 配置SwaggerUI
             app.UseSwaggerUI(c =>
             {
+                c.EnableDeepLinking();
+                c.DisplayRequestDuration();
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RichProjectApi");
                 c.RoutePrefix = "swagger";
             });
