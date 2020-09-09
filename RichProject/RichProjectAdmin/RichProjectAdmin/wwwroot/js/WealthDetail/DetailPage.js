@@ -69,14 +69,33 @@
             if (layEvent === 'detail') {
                 alert('查看操作');
             } else if (layEvent === 'del') {
-                layer.confirm('真的删除行么',
-                    function (index) {
-                        obj.del(); //删除对应行（tr）的DOM结构
-                        layer.close(index);
-                        //向服务端发送删除指令
-                    });
+                var r = confirm("是否删除该数据!");
+                if (r == true) {
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    alert(data.id);
+                    DelWealthDetail(data.id);
+                }
             } else if (layEvent === 'edit') {
                 alert('编辑操作');
             }
         });
 });
+
+function DelWealthDetail(id) {
+    var param = {};
+    param.id = id;
+    $.ajax({
+        url: Url.DelWealthDetail,
+        type: 'post',
+        async: true,
+        dataType: 'json',
+        data:param,
+        success: function (result) {
+            if (result.result == true) {
+                alert("删除成功");
+            } else {
+                alert("删除失败");
+            }
+        }
+    });
+}
