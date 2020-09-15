@@ -1,5 +1,73 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 10%">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" 
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    查看财富详情
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-3 control-label">id</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="" id="cid">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-3 control-label">存钱处</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="" id="cwealthArea">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-3 control-label">金额</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="" id="camount">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-3 control-label">备注</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="" id="cremark">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-3 control-label">创建时间</label>
+                        <div class='input-group date col-sm-9' id='datetimepicker1'>
+                            <input type='text' class="form-control" id="ccreateTime"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-3 control-label">更新时间</label>
+                        <div class='input-group date col-sm-9' id='datetimepicker2'>
+                            <input type='text' class="form-control" id="cupdateTime" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" 
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

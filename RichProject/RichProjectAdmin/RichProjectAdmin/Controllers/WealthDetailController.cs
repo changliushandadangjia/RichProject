@@ -33,6 +33,7 @@ namespace RichProjectAdmin.Web.Controllers
         public async Task<LayuiBackModel<List<WealthDetail>>> GetWealthDetail()
         {
             var detail = await _wealthDetailService.GetWealthDetail();
+            detail = detail.Where(p => !p.IsDeleted).Select(p => p).ToList();
             return new LayuiBackModel<List<WealthDetail>>(){Code = 0,Count = detail.Count,Data=detail};
         }
 
@@ -50,5 +51,27 @@ namespace RichProjectAdmin.Web.Controllers
             var amountSummary = await _wealthDetailService.GetMonthAmountSummary();
             return Json(new{result = amountSummary});
         }
+
+        [DontWrapResult]
+        public async Task<JsonResult> AddWealthDetail(WealthDetail detail)
+        {
+            var result = await _wealthDetailService.AddWealthDetail(detail);
+            return Json(new {result = result});
+        }
+
+        [DontWrapResult]
+        public async Task<JsonResult> UpdateWealthDetailById(WealthDetail detail)
+        {
+            var result = await _wealthDetailService.UpdateWealthDetail(detail);
+            return Json(new { result = result });
+        }
+
+        [DontWrapResult]
+        public async Task<JsonResult> DeleteWealthDetailById(int id)
+        {
+            var result = await _wealthDetailService.DeleteWealthDetail(id);
+            return Json(new { result = result });
+        }
+
     }
 }
