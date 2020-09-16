@@ -11,6 +11,9 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
         title: '用户表',
         page: true //开启分页
         ,
+        where: {},//参数
+        limit: 10,
+        limits:[5,10,15,20],
         toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
         ,
         totalRow: true //开启合计行
@@ -41,7 +44,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             var checkStatus = table.checkStatus(obj.config.id), data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    alert('添加');
+                    AddWealthDetail();
                     break;
                 case 'update':
                     if (data.length === 0) {
@@ -49,14 +52,16 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                     } else if (data.length > 1) {
                         alert('只能同时编辑一个');
                     } else {
-                        alert('编辑 [id]：' + checkStatus.data[0].id);
+                        notice(data[0]);
                     }
                     break;
                 case 'delete':
+                    console.log(data)
                     if (data.length === 0) {
                         alert('请选择一行');
                     } else {
-                        alert('删除');
+                        //obj.del(); //删除对应行（tr）的DOM结构
+                        DelWealthDetail(data[0].id);
                     }
                     break;
             };
@@ -69,27 +74,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                 ,
                 layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'detail') {
-                var modal = $("#myModal").prop("outerHTML");
-                $("#myModal").remove();
-                $("#motaikuang").html(modal);
-                $("#myModal").modal({
-                    backdrop: true
-                });
-                $('#datetimepicker1').datetimepicker({
-                    format: 'YYYY-MM-DD',
-                    locale: moment.locale('zh-cn')
-                });
-                $('#datetimepicker2').datetimepicker({
-                    format: 'YYYY-MM-DD',
-                    locale: moment.locale('zh-cn')
-                });
-                $("#cid").val(data.id);
-                $("#cwealthArea").val(data.wealthArea);
-                $("#camount").val(data.amount);
-                $("#cremark").val(data.remark);
-                $("#ccreateTime").val(data.creationTime);
-                $("#cupdateTime").val(data.lastModifycationTime);
-                $("#cid,#cwealthArea,#camount,#cremark,#ccreateTime,#cupdateTime").attr("disabled", "disabled");
+                QueryDetail(data);
             } else if (layEvent === 'del') {
                 var r = confirm("是否删除该数据!");
                 if (r == true) {
@@ -97,26 +82,107 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                     DelWealthDetail(data.id);
                 }
             } else if (layEvent === 'edit') {
-                notice();
+                notice(data);
             }
         });
-    var notice = function() {
+    var notice = function(data) {
         //示范一个公告层
         layer.open({
             type: 1,
-            title: false //不显示标题栏
+            title: '编辑财富详情' //不显示标题栏
             ,
             closeBtn: false,
-            area: '300px;',
+            area: '60%;',
             shade: 0.8,
             id: 'LAY_layuipro' //设定一个id，防止重复弹出
             ,
-            btn: ['火速围观', '残忍拒绝'],
+            btn: ['提交', '取消'],
             btnAlign: 'c',
             moveType: 1 //拖拽模式，0或者1
             ,
             content:
-                '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>layer ≠ layui<br><br>layer只是作为Layui的一个弹层模块，由于其用户基数较大，所以常常会有人以为layui是layerui<br><br>layer虽然已被 Layui 收编为内置的弹层模块，但仍然会作为一个独立组件全力维护、升级。<br><br>我们此后的征途是星辰大海 ^_^</div>'
+"<div style='width:70%;margin:auto'>\
+<form class='form-horizontal' role='form' style='margin:auto'>\
+    <div class='form-group' style='display:none'>\
+        <label for='firstname' class='col-sm-3 control-label'>id</label>\
+        <div class='col-sm-9'>\
+            <input type='text' class='form-control' placeholder='' id='uid'>\
+        </div>\
+    </div>\
+    <div class='form-group'>\
+        <label for='lastname' class='col-sm-3 control-label'>存钱处</label>\
+        <div class='col-sm-9'>\
+            <input type='text' class='form-control' placeholder='' id='uwealthArea'>\
+        </div>\
+    </div>\
+    <div class='form-group'>\
+        <label for='lastname' class='col-sm-3 control-label'>金额</label>\
+        <div class='col-sm-9'>\
+            <input type='text' class='form-control' placeholder='' id='uamount'>\
+        </div>\
+    </div>\
+    <div class='form-group'>\
+        <label for='lastname' class='col-sm-3 control-label'>备注</label>\
+        <div class='col-sm-9'>\
+            <input type='text' class='form-control' placeholder='' id='uremark'>\
+        </div>\
+    </div>\
+    <div class='form-group'>\
+        <label for='lastname' class='col-sm-3 control-label'>创建时间</label>\
+        <div class='input-group date col-sm-9' id='datetimepicker1'>\
+            <input type='text' class='form-control' id='ucreateTime' />\
+            <span class='input-group-addon'>\
+                <span class='glyphicon glyphicon-calendar'></span>\
+            </span>\
+        </div>\
+    </div>\
+    <div class='form-group'>\
+        <label for='lastname' class='col-sm-3 control-label'>更新时间</label>\
+        <div class='input-group date col-sm-9' id='datetimepicker2'>\
+            <input type='text' class='form-control' id='uupdateTime' />\
+            <span class='input-group-addon'>\
+                <span class='glyphicon glyphicon-calendar'></span>\
+            </span>\
+        </div>\
+    </div>\
+</form>\
+</div>",
+            success: function (layero, index) {
+                console.log(layero, index);
+                $("#uid").val(data.id);
+                $("#uwealthArea").val(data.wealthArea);
+                $("#uamount").val(data.amount);
+                $("#uremark").val(data.remark);
+                $("#ucreateTime").val(data.creationTime);
+                $("#uupdateTime").val(data.lastModifycationTime);
+            },
+            yes: function (index, layero) {
+                var param = {};
+                param.id = $("#uid").val();
+                param.wealthArea=$("#uwealthArea").val();
+                param.amount=$("#uamount").val();
+                param.remark=$("#uremark").val();
+                param.creationTime=$("#ucreateTime").val();
+                param.lastModifycationTime=$("#uupdateTime").val();
+                $.ajax({
+                    url: Url.UpdateWealthDetail,
+                    type: 'post',
+                    async: true,
+                    dataType: 'json',
+                    data: param,
+                    success: function (result) {
+                        if (result.result == true) {
+                            alert("修改成功");
+                            layer.close(index);
+                        } else {
+                            alert("修改失败");
+                        }
+                    }
+                });
+            },
+            cancel: function (index, layero) {
+                layer.close(index);
+            }    
         });
     };
 });
@@ -138,4 +204,71 @@ function DelWealthDetail(id) {
             }
         }
     });
+}
+
+function QueryDetail(data) {
+    var modal = $("#myModal").prop("outerHTML");
+    $("#myModal").remove();
+    $("#motaikuang").html(modal);
+    $("#myModal").modal({
+        backdrop: true
+    });
+    $('#datetimepicker1').datetimepicker({
+        format: 'YYYY-MM-DD',
+        locale: moment.locale('zh-cn')
+    });
+    $('#datetimepicker2').datetimepicker({
+        format: 'YYYY-MM-DD',
+        locale: moment.locale('zh-cn')
+    });
+    $("#cid").val(data.id);
+    $("#cwealthArea").val(data.wealthArea);
+    $("#camount").val(data.amount);
+    $("#cremark").val(data.remark);
+    $("#ccreateTime").val(data.creationTime);
+    $("#cupdateTime").val(data.lastModifycationTime);
+    $("#cid,#cwealthArea,#camount,#cremark,#ccreateTime,#cupdateTime").attr("disabled", "disabled");
+}
+
+function AddWealthDetail() {
+    var modal = $("#myModal").prop("outerHTML");
+    $("#myModal").remove();
+    $("#motaikuang").html(modal);
+    $("#myModal").modal({
+        backdrop: true
+    });
+    $('#datetimepicker1').datetimepicker({
+        format: 'YYYY-MM-DD',
+        locale: moment.locale('zh-cn')
+    });
+    $('#datetimepicker2').datetimepicker({
+        format: 'YYYY-MM-DD',
+        locale: moment.locale('zh-cn')
+    });
+    $("#cwealthArea,#camount,#cremark,#ccreateTime,#cupdateTime").val("");
+    $("#cid,#cwealthArea,#camount,#cremark,#ccreateTime,#cupdateTime").attr("disabled", false);
+    $('#addWealthDetail').on('click',
+        function () {
+            var param = {};
+            param.wealthArea = $("#cwealthArea").val();
+            param.amount = $("#camount").val();
+            param.remark = $("#cremark").val();
+            param.creationTime = $("#ccreateTime").val();
+            param.lastModifycationTime = $("#cupdateTime").val();
+            $.ajax({
+                url: Url.AddWealthDetail,
+                type: 'post',
+                async: true,
+                dataType: 'json',
+                data: param,
+                success: function (result) {
+                    if (result.result == true) {
+                        alert("新增成功");
+                        $("#myModal").modal('hide');
+                    } else {
+                        alert("新增失败");
+                    }
+                }
+            });
+        });
 }

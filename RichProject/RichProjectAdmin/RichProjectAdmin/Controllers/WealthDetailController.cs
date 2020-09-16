@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Remotion.Linq.Parsing.Structure.IntermediateModel;
 using RichProjectAdmin.Domain.Interface;
 using RichProjectAdmin.Domain.Model;
 
@@ -35,6 +36,16 @@ namespace RichProjectAdmin.Web.Controllers
             var detail = await _wealthDetailService.GetWealthDetail();
             detail = detail.Where(p => !p.IsDeleted).Select(p => p).ToList();
             return new LayuiBackModel<List<WealthDetail>>(){Code = 0,Count = detail.Count,Data=detail};
+        }
+
+        [DontWrapResult]
+        public async Task<LayuiBackModel<List<WealthDetail>>> GetWealthDetailFetch(int page, int limit)
+        {
+            var detail = await _wealthDetailService.GetWealthDetail();
+            detail = detail.Where(p => !p.IsDeleted).Select(p => p).ToList();
+            var count = detail.Count;
+            detail = detail.Skip((page - 1) * limit).Take(limit).ToList();
+            return new LayuiBackModel<List<WealthDetail>>() { Code = 0, Count = count, Data = detail };
         }
 
         [DontWrapResult]

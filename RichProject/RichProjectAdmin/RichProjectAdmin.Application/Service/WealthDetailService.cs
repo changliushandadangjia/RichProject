@@ -84,12 +84,7 @@ namespace RichProjectAdmin.Application.Service
         public async Task<bool> AddWealthDetail(WealthDetail detail)
         {
             string url = "https://localhost:44399/AddWealthDetail";
-            Dictionary<string, string> dicParam = new Dictionary<string, string>();
-            dicParam.Add("Id", detail.Id.ToString());
-            dicParam.Add("WealthArea", detail.WealthArea);
-            dicParam.Add("Amount", detail.Amount.ToString(CultureInfo.InvariantCulture));
-            dicParam.Add("Remark", detail.Remark);
-            HttpContent content = new FormUrlEncodedContent(dicParam);
+            var content = (HttpContent) new StringContent(JsonConvert.SerializeObject(detail),Encoding.UTF8, "application/json");
             var str = await RemoteHelper(url, content, HttpVerb.Post);
             var result = Convert.ToBoolean(str);
             return result;
