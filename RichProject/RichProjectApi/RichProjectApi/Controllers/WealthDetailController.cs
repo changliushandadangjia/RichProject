@@ -31,6 +31,10 @@ namespace RichProjectApi.Controllers
             return _wealthDetailService.GetWealthDetailById(id);
         }
 
+        /// <summary>
+        /// 获取所有财富详情
+        /// </summary>
+        /// <returns></returns>
         [DontWrapResult]
         [HttpGet("GetWealthDetail")]
         public ActionResult<List<WealthDetail>> GetWealthDetail()
@@ -38,6 +42,10 @@ namespace RichProjectApi.Controllers
             return _wealthDetailService.GetWealthDetail();
         }
 
+        /// <summary>
+        /// 获取每月财富详情汇总
+        /// </summary>
+        /// <returns></returns>
         [DontWrapResult]
         [HttpGet("GetMonthAmountSummary")]
         public ActionResult<List<MonthAmountSummary>> GetMonthAmountSummary()
@@ -45,6 +53,11 @@ namespace RichProjectApi.Controllers
             return _wealthDetailService.GetMonthAmountSummary();
         }
 
+        /// <summary>
+        /// 更新财富详情
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [DontWrapResult]
         [HttpPut("UpdateWealthDetail/ById")]
         public ActionResult<bool> UpdateWealthDetailById(WealthDetail input)
@@ -52,6 +65,11 @@ namespace RichProjectApi.Controllers
             return _wealthDetailService.UpdateWealthDetailById(input);
         }
 
+        /// <summary>
+        /// 删除财富详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [DontWrapResult]
         [HttpDelete("DeleteWealthDetail/ById")]
         public ActionResult<bool> DeleteWealthDetailById(int id)

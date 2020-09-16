@@ -4,9 +4,62 @@
         <name>RichProjectApi</name>
     </assembly>
     <members>
+        <member name="M:RichProjectApi.Controllers.LargePayDetailController.GetLargePayDetailById">
+            <summary>
+            获取所有大型支出列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.LargePayDetailController.UpdateLargePayDetailById(RichProjectDomain.Model.DatabaseDto.LargePayDetail)">
+            <summary>
+            更新大型支出详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.LargePayDetailController.DeleteLargePayDetailById(System.Int32)">
+            <summary>
+            删除大型支出详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.LargePayDetailController.AddLargePayDetail(RichProjectDomain.Model.DatabaseDto.LargePayDetail)">
+            <summary>
+            新增大型支出详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:RichProjectApi.Controllers.WealthDetailController.GetWealthDetailById(System.Int32)">
             <summary>
             根据Id查询财富详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.WealthDetailController.GetWealthDetail">
+            <summary>
+            获取所有财富详情
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.WealthDetailController.GetMonthAmountSummary">
+            <summary>
+            获取每月财富详情汇总
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.WealthDetailController.UpdateWealthDetailById(RichProjectDomain.Model.DatabaseDto.WealthDetail)">
+            <summary>
+            更新财富详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.WealthDetailController.DeleteWealthDetailById(System.Int32)">
+            <summary>
+            删除财富详情
             </summary>
             <param name="id"></param>
             <returns></returns>

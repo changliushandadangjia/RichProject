@@ -30,6 +30,8 @@ namespace RichProjectAdmin.Web.Controllers
             return View();
         }
 
+        public async Task<>
+
         [DontWrapResult]
         public async Task<LayuiBackModel<List<WealthDetail>>> GetWealthDetail()
         {
