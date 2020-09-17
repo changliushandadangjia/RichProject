@@ -22,7 +22,7 @@ namespace RichProjectApi.Controllers
         /// </summary>
         /// <returns></returns>
         [DontWrapResult]
-        [HttpGet("GetLargePayDetail/ById")]
+        [HttpGet("GetLargePayDetail")]
         public ActionResult<List<LargePayDetail>> GetLargePayDetailById()
         {
             return _largePayDetailService.GetLargePayDetail();

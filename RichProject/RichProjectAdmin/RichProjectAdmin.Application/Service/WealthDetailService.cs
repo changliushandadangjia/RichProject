@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Abp.Dependency;
 using Abp.Web;
 using Newtonsoft.Json;
+using RichProjectAdmin.Application.Service.Frame;
 using RichProjectAdmin.Domain.Interface;
 using RichProjectAdmin.Domain.Model;
 
@@ -15,10 +16,10 @@ namespace RichProjectAdmin.Application.Service
 {
     public class WealthDetailService : IWealthDetailService, ITransientDependency
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public WealthDetailService(IHttpClientFactory httpClientFactory)
+        private readonly HttpClientCommonService _httpClientCommonService;
+        public WealthDetailService( HttpClientCommonService httpClientCommonService)
         {
-            _httpClientFactory = httpClientFactory;
+            _httpClientCommonService = httpClientCommonService;
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace RichProjectAdmin.Application.Service
         public async Task<List<WealthDetail>> GetWealthDetail()
         {
             string url = "https://localhost:44399/GetWealthDetail";
-            var str = await RemoteHelper(url, null,HttpVerb.Get);
+            var str = await _httpClientCommonService.RemoteHelper(url, null,HttpVerb.Get);
             var result = JsonConvert.DeserializeObject<List<WealthDetail>>(str);
             return result;
         }
@@ -40,7 +41,7 @@ namespace RichProjectAdmin.Application.Service
         public async Task<List<DetailAmountSummary>> GetMonthAmountSummary()
         {
             string url = "https://localhost:44399/GetMonthAmountSummary";
-            var str = await RemoteHelper(url, null,HttpVerb.Get);
+            var str = await _httpClientCommonService.RemoteHelper(url, null,HttpVerb.Get);
             var result = JsonConvert.DeserializeObject<List<DetailAmountSummary>>(str);
             return result;
         }
@@ -53,7 +54,7 @@ namespace RichProjectAdmin.Application.Service
         public async Task<bool> DeleteWealthDetail(int id)
         {
             string url = $"https://localhost:44399/DeleteWealthDetail/ById?id={id}";
-            var str = await RemoteHelper(url, null,HttpVerb.Delete);
+            var str = await _httpClientCommonService.RemoteHelper(url, null,HttpVerb.Delete);
             var result = Convert.ToBoolean(str);
             return result;
         }
@@ -71,7 +72,7 @@ namespace RichProjectAdmin.Application.Service
             dicParam.Add("Amount", detail.Amount.ToString(CultureInfo.InvariantCulture));
             dicParam.Add("Remark", detail.Remark);
             HttpContent content = new FormUrlEncodedContent(dicParam);
-            var str = await RemoteHelper(url, content,HttpVerb.Put);
+            var str = await _httpClientCommonService.RemoteHelper(url, content,HttpVerb.Put);
             var result = Convert.ToBoolean(str);
             return result;
         }
@@ -85,45 +86,8 @@ namespace RichProjectAdmin.Application.Service
         {
             string url = "https://localhost:44399/AddWealthDetail";
             var content = (HttpContent) new StringContent(JsonConvert.SerializeObject(detail),Encoding.UTF8, "application/json");
-            var str = await RemoteHelper(url, content, HttpVerb.Post);
+            var str = await _httpClientCommonService.RemoteHelper(url, content, HttpVerb.Post);
             var result = Convert.ToBoolean(str);
-            return result;
-        }
-
-        private async Task<string> RemoteHelper(string url, HttpContent content, HttpVerb verb)
-        {
-            var result = string.Empty;
-            try
-            {
-                using (var client = _httpClientFactory.CreateClient())
-                {
-                    HttpResponseMessage response;
-                    if (verb == HttpVerb.Get)
-                    {
-                        response = await client.GetAsync(url);
-                    }
-                    else if (verb == HttpVerb.Post)
-                    {
-                        response = await client.PostAsync(url, content);
-                    }
-                    else if (verb == HttpVerb.Delete)
-                    {
-                        response = await client.DeleteAsync(url);
-                    }
-                    else
-                    {
-                        response = await client.PutAsync(url, content);
-                    }
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        result = await response.Content.ReadAsStringAsync();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
             return result;
         }
     }

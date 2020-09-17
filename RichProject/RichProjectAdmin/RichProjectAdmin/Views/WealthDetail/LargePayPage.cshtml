@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "LargePayPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="layui-hide" id="demo" lay-filter="test"></table>
+<script>
+    var Url = {
+        GetLargePayDetail: '@Url.Action("GetLargePayDetail", "WealthDetail")',
+        DelLargePayDetail: '@Url.Action("DeleteLargePayDetailById", "WealthDetail")',
+        UpdateLargePayDetail: '@Url.Action("UpdateLargePayDetailById", "WealthDetail")',
+        AddLargePayDetail:'@Url.Action("AddLargePayDetail", "WealthDetail")'
+    }
+</script>
+<script src="~/js/WealthDetail/LargePayDetail.js"></script>

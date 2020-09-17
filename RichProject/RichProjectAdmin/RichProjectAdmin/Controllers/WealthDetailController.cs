@@ -14,10 +14,12 @@ namespace RichProjectAdmin.Web.Controllers
     public class WealthDetailController : AbpController
     {
         private readonly IWealthDetailService _wealthDetailService;
+        private readonly ILargePayDetailService _largePayDetailService;
 
-        public WealthDetailController(IWealthDetailService wealthDetailService)
+        public WealthDetailController(IWealthDetailService wealthDetailService, ILargePayDetailService largePayDetailService)
         {
             _wealthDetailService = wealthDetailService;
+            _largePayDetailService = largePayDetailService;
         }
 
         public async Task<IActionResult> Index()
@@ -30,7 +32,10 @@ namespace RichProjectAdmin.Web.Controllers
             return View();
         }
 
-        public async Task<>
+        public async Task<IActionResult> LargePayPage()
+        {
+            return View();
+        }
 
         [DontWrapResult]
         public async Task<LayuiBackModel<List<WealthDetail>>> GetWealthDetail()
@@ -38,16 +43,6 @@ namespace RichProjectAdmin.Web.Controllers
             var detail = await _wealthDetailService.GetWealthDetail();
             detail = detail.Where(p => !p.IsDeleted).Select(p => p).ToList();
             return new LayuiBackModel<List<WealthDetail>>(){Code = 0,Count = detail.Count,Data=detail};
-        }
-
-        [DontWrapResult]
-        public async Task<LayuiBackModel<List<WealthDetail>>> GetWealthDetailFetch(int page, int limit)
-        {
-            var detail = await _wealthDetailService.GetWealthDetail();
-            detail = detail.Where(p => !p.IsDeleted).Select(p => p).ToList();
-            var count = detail.Count;
-            detail = detail.Skip((page - 1) * limit).Take(limit).ToList();
-            return new LayuiBackModel<List<WealthDetail>>() { Code = 0, Count = count, Data = detail };
         }
 
         [DontWrapResult]
@@ -63,6 +58,18 @@ namespace RichProjectAdmin.Web.Controllers
         {
             var amountSummary = await _wealthDetailService.GetMonthAmountSummary();
             return Json(new{result = amountSummary});
+        }
+
+        #region WealthDetail
+
+        [DontWrapResult]
+        public async Task<LayuiBackModel<List<WealthDetail>>> GetWealthDetailFetch(int page, int limit)
+        {
+            var detail = await _wealthDetailService.GetWealthDetail();
+            detail = detail.Where(p => !p.IsDeleted).Select(p => p).ToList();
+            var count = detail.Count;
+            detail = detail.Skip((page - 1) * limit).Take(limit).ToList();
+            return new LayuiBackModel<List<WealthDetail>>() { Code = 0, Count = count, Data = detail };
         }
 
         [DontWrapResult]
@@ -86,5 +93,42 @@ namespace RichProjectAdmin.Web.Controllers
             return Json(new { result = result });
         }
 
+        #endregion
+
+        #region LargePayDetail 
+
+        [DontWrapResult]
+        public async Task<LayuiBackModel<List<LargePayDetail>>> GetLargePayDetail(int page, int limit)
+        {
+            var detail = await _largePayDetailService.GetLargePayDetail();
+            detail = detail.Where(p => !p.IsDeleted).Select(p => p).ToList();
+            var count = detail.Count;
+            detail = detail.Skip((page - 1) * limit).Take(limit).ToList();
+            return new LayuiBackModel<List<LargePayDetail>>() { Code = 0, Count = count, Data = detail };
+        }
+
+
+        [DontWrapResult]
+        public async Task<JsonResult> AddLargePayDetail(LargePayDetail detail)
+        {
+            var result = await _largePayDetailService.AddLargePayDetail(detail);
+            return Json(new { result = result });
+        }
+
+        [DontWrapResult]
+        public async Task<JsonResult> UpdateLargePayDetailById(LargePayDetail detail)
+        {
+            var result = await _largePayDetailService.UpdateLargePayDetail(detail);
+            return Json(new { result = result });
+        }
+
+        [DontWrapResult]
+        public async Task<JsonResult> DeleteLargePayDetailById(int id)
+        {
+            var result = await _largePayDetailService.DeleteLargePayDetail(id);
+            return Json(new { result = result });
+        }
+
+        #endregion
     }
 }
