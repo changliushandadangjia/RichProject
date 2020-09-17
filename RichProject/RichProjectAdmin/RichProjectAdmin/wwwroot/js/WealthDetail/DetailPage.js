@@ -56,7 +56,6 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
                     }
                     break;
                 case 'delete':
-                    console.log(data)
                     if (data.length === 0) {
                         alert('请选择一行');
                     } else {
@@ -95,7 +94,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             title: '编辑财富详情' //不显示标题栏
             ,
             closeBtn: false,
-            area: '60%;',
+            area: ['60%;','550px'],
             shade: 0.8,
             id: 'LAY_layuipro' //设定一个id，防止重复弹出
             ,
@@ -104,7 +103,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
             moveType: 1 //拖拽模式，0或者1
             ,
             content:
-                "<div style='width:70%;margin:auto'>\
+                "<div style='width:70%;margin-left:10%'>\
 <form class='form-horizontal' role='form' style='margin:auto'>\
     <div class='form-group' style='display:none'>\
         <label for='firstname' class='col-sm-3 control-label'>id</label>\
@@ -132,7 +131,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
     </div>\
     <div class='form-group'>\
         <label for='lastname' class='col-sm-3 control-label'>创建时间</label>\
-        <div class='input-group date col-sm-9' id='datetimepicker1'>\
+        <div class='input-group date col-sm-9' id='datetimepicker3'>\
             <input type='text' class='form-control' id='ucreateTime' />\
             <span class='input-group-addon'>\
                 <span class='glyphicon glyphicon-calendar'></span>\
@@ -141,7 +140,7 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
     </div>\
     <div class='form-group'>\
         <label for='lastname' class='col-sm-3 control-label'>更新时间</label>\
-        <div class='input-group date col-sm-9' id='datetimepicker2'>\
+        <div class='input-group date col-sm-9' id='datetimepicker4'>\
             <input type='text' class='form-control' id='uupdateTime' />\
             <span class='input-group-addon'>\
                 <span class='glyphicon glyphicon-calendar'></span>\
@@ -151,6 +150,14 @@ layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'elemen
 </form>\
 </div>",
             success: function (layero, index) {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    locale: moment.locale('zh-cn')
+                });
+                $('#datetimepicker4').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    locale: moment.locale('zh-cn')
+                });
                 console.log(layero, index);
                 $("#uid").val(data.id);
                 $("#uwealthArea").val(data.wealthArea);
