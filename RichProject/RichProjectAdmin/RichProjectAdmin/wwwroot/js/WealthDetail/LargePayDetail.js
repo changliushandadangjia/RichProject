@@ -72,7 +72,7 @@
             title: '编辑大型支出详情' //不显示标题栏
             ,
             closeBtn: false,
-            area: '60%;',
+            area: ['60%;', '550px'],
             shade: 0.8,
             id: 'LAY_layuipro' //设定一个id，防止重复弹出
             ,
@@ -181,7 +181,7 @@
             title: '新增大型支出详情' //不显示标题栏
             ,
             closeBtn: false,
-            area: '60%;',
+            area: ['60%;', '550px'],
             shade: 0.8,
             id: 'LAY_layuipro1' //设定一个id，防止重复弹出
             ,
