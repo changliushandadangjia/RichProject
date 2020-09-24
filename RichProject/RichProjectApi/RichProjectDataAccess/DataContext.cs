@@ -17,5 +17,7 @@ namespace RichProjectDataAccess
         public DbSet<MonthAmountSummary> MonthAmountSummary { get; set; }
 
         public DbSet<LargePayDetail> LargePayDetail { get; set; }
+
+        public DbSet<ShareDealDetail> ShareDealDetail { get; set; }
     }
 }
