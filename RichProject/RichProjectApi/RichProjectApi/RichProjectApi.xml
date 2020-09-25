@@ -31,6 +31,27 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:RichProjectApi.Controllers.ShareDetailController.GetShareDealDetail(RichProjectDomain.Model.InputModel.ShareDetailQueryInputDto)">
+            <summary>
+            获取股票交易详情
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.ShareDetailController.AddShareDealDetail(RichProjectDomain.Model.DatabaseDto.ShareDealDetail)">
+            <summary>
+            新增股票交易详情
+            </summary>
+            <param name="detail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RichProjectApi.Controllers.ShareDetailController.UpdateShareDealDetail(RichProjectDomain.Model.DatabaseDto.ShareDealDetail)">
+            <summary>
+            更新股票交易详情
+            </summary>
+            <param name="detail"></param>
+            <returns></returns>
+        </member>
         <member name="M:RichProjectApi.Controllers.WealthDetailController.GetWealthDetailById(System.Int32)">
             <summary>
             根据Id查询财富详情

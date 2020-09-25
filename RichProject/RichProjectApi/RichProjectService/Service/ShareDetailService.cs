@@ -37,7 +37,17 @@ namespace RichProjectService.Service
         /// <returns></returns>
         public bool AddShareDealDetail(ShareDealDetail detail)
         {
-
+            return _shareDetailCommand.AddShareDealDetail(detail);
+        }
+        
+        /// <summary>
+        /// 更新交易记录
+        /// </summary>
+        /// <param name="detail"></param>
+        /// <returns></returns>
+        public bool UpdateShareDealDetail(ShareDealDetail detail)
+        {
+            return _shareDetailCommand.UpdateShareDealDetail(detail);
         }
     }
 }

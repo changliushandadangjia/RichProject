@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Abp.Dependency;
+using Microsoft.EntityFrameworkCore;
 using RichProjectDomain.Interface.Command;
 using RichProjectDomain.Model.DatabaseDto;
 
@@ -17,7 +19,7 @@ namespace RichProjectDataAccess.Command
         }
 
         /// <summary>
-        /// 添加
+        /// 添加股票交易详情
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -29,9 +31,28 @@ namespace RichProjectDataAccess.Command
             return _dataContext.SaveChanges() > 0;
         }
 
-        public bool UpdateShareDealDetail()
+        /// <summary>
+        /// 修改股票交易详情
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool UpdateShareDealDetail(ShareDealDetail input)
         {
-
+            var detail = _dataContext.ShareDealDetail.FirstOrDefault(p => p.Id == input.Id);
+            if (detail == null)
+                return false;
+            detail.StartPrice = input.StartPrice;
+            detail.EndPrice = input.EndPrice;
+            detail.BuyTime = input.BuyTime;
+            detail.SaleTime = input.SaleTime;
+            detail.ShareCode = input.ShareCode;
+            detail.Name = input.Name;
+            detail.ShareNumber = input.ShareNumber;
+            detail.Amount = input.Amount;
+            detail.Remark = input.Remark;
+            detail.LastModifycationTime = DateTime.Now;
+            _dataContext.ShareDealDetail.Update(detail);
+            return _dataContext.SaveChanges() > 0;
         }
     }
 }
