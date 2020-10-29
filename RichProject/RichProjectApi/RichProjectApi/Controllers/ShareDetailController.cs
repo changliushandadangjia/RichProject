@@ -56,5 +56,16 @@ namespace RichProjectApi.Controllers
         {
             return _shareDetailService.UpdateShareDealDetail(detail);
         }
+
+        [DontWrapResult]
+        // GET api/values/5
+        [HttpGet("GetId")]
+        public ShareDealDetail Get()
+        {
+            return new ShareDealDetail()
+            {
+                Amount = 500
+            };
+        }
     }
 }

@@ -46,6 +46,16 @@ namespace RichProjectApi
                 // 启用xml注释. 该方法第二个参数启用控制器的注释，默认为false.
                 c.IncludeXmlComments(xmlPath, true);
             });
+            services.AddDbContext<DataContext>(optionsBuilder => { optionsBuilder.UseSqlServer("Server=.;Database=RichProject;integrated security=true;"); });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
             services.AddMvc(option =>
             {
                 option.OutputFormatters.RemoveType(typeof(HttpNoContentOutputFormatter));
@@ -55,7 +65,6 @@ namespace RichProjectApi
                 });
                 option.Filters.Add(new WebApiExceptionFilterAttribute());
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<DataContext>(optionsBuilder => { optionsBuilder.UseSqlServer("Server=.;Database=RichProject;integrated security=true;"); });
             return services.AddAbp<InterfaceModule>();
         }
 
@@ -66,11 +75,10 @@ namespace RichProjectApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseAbp();
             app.UseAbpRequestLocalization();
-            app.UseMvc();
             // 启用Swagger中间件
             app.UseSwagger();
 
@@ -82,6 +90,8 @@ namespace RichProjectApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RichProjectApi");
                 c.RoutePrefix = "swagger";
             });
+            app.UseCors("CorsPolicy");
+            app.UseMvc();
         }
     }
 }
