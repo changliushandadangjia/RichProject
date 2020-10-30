@@ -1,0 +1,22 @@
+$event子传父参数
+template
+component
+$emit
+$refs
+ref= 放标签上就是标签，放组件上直接获取组件
+prop:{}
+bus.$emit bus为vue空实例
+bus.$on 监听事件
+动态组件 component :is
+keep-alive
+slot 组件的插槽
+slot=""  name=""  具名插槽
+directive  自定义指令 inserted
+vetur插件
+scoped 唯一属性，css局部生效
+npm run lint
+<router-link  to="/href"  tag="li" activeClass="myClass"> 高级超链接跳转
+children:[ ] 二级路由
+this.$router.push('/href')  跳转
+"/detail/:myid" 动态路由
+router.beforeEach(()=>{})在router.js里是全局守卫
